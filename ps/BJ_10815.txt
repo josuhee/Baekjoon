@@ -1,0 +1,37 @@
+//[백준] 10815 : 숫자 카드
+
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main()
+{
+	int N, M, num;
+	vector<int> user;
+	vector<int> card;
+
+	scanf("%d", &N);
+	for (int i = 0; i < N; i++)
+	{
+		scanf("%d", &num);
+		user.push_back(num);
+	}
+	scanf("%d", &M);
+	for (int i = 0; i < M; i++)
+	{
+		scanf("%d", &num);
+		card.push_back(num);
+	}
+	sort(user.begin(), user.end());
+	for (int i = 0; i < M; i++)
+	{
+		int idx = lower_bound(user.begin(), user.end(), card[i]) - user.begin();
+
+		if (card[i] == user[idx])
+			printf("1 ");
+		else
+			printf("0 ");
+	}
+	return (0);
+}
